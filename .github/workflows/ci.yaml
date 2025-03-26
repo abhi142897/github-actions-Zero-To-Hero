@@ -83,6 +83,7 @@ jobs:
       - name: Check if JAR file exists
         run: ls -l
       - name: Build and Push Docker Image
+        working-directory: spring-boot-app
         run: |
           IMAGE_NAME="${{ vars.DOCKER_USER }}/github-actions-demo"
           VERSION="${{ github.run_number }}"
