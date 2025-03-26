@@ -37,7 +37,7 @@ jobs:
       - name: Upload JAR as an Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: spring-boot-app
+          name: spring-boot-web
           path: target/*.jar
 #  sonar:
 #    needs: build
