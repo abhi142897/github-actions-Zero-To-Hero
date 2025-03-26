@@ -38,7 +38,7 @@ jobs:
         run: ls -l spring-boot-app/target/
         
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: spring-boot-web
           path: spring-boot-app/target/spring-boot-web.jar
@@ -74,7 +74,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: spring-boot-web
           path: target/
