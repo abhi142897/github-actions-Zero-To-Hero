@@ -67,7 +67,7 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          IMAGE_NAME="${{ vars.DOCKER_USER }}/github-actions-demo"
+          IMAGE_NAME="abhishek159/github-actions-demo"
           VERSION="${BUILD_NUMBER}"
           docker build -t $IMAGE_NAME:$VERSION -f spring-boot-app/Dockerfile spring-boot-app
           docker push $IMAGE_NAME:$VERSION
