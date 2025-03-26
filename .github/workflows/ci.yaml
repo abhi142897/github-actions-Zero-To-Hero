@@ -35,6 +35,7 @@ jobs:
         run: mvn clean package
         
       - name: Upload JAR as an Artifact
+        working-directory: spring-boot-app
         uses: actions/upload-artifact@v3
         with:
           name: spring-boot-web
