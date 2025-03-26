@@ -53,6 +53,7 @@ jobs:
 #          mvn sonar:sonar \
 #            -Dsonar.host.url=${{ secrets.SONAR_URL }} \
 #            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
   docker:
     needs: build
     runs-on: ubuntu-latest
