@@ -34,6 +34,9 @@ jobs:
         working-directory: spring-boot-app
         run: mvn clean package
         
+      - name: Verify JAR File Exists
+        run: ls -l spring-boot-app/target/
+        
       - name: Upload JAR as an Artifact
         uses: actions/upload-artifact@v3
         with:
