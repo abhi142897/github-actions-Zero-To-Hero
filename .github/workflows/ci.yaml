@@ -31,4 +31,5 @@ jobs:
             maven-
 
       - name: Build with Maven
+        working-directory: spring-boot-app
         run: mvn clean package
