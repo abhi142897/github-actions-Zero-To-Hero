@@ -33,7 +33,27 @@ jobs:
       - name: Build with Maven
         working-directory: spring-boot-app
         run: mvn clean package
-  sonar:
+#  sonar:
+#    needs: build
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout Repository
+#        uses: actions/checkout@v4
+#
+#      - name: Set up JDK 17
+#        uses: actions/setup-java@v3
+#        with:
+#          distribution: 'temurin'
+#          java-version: '17'
+#
+#      - name: Run SonarQube Analysis
+#        working-directory: spring-boot-app
+#        run: |
+#          mvn sonar:sonar \
+#            -Dsonar.host.url=${{ secrets.SONAR_URL }} \
+#            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+  docker:
     needs: build
     runs-on: ubuntu-latest
 
@@ -41,15 +61,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      - name: Run SonarQube Analysis
-        working-directory: spring-boot-app
+      - name: Build and Push Docker Image
         run: |
-          mvn sonar:sonar \
-            -Dsonar.host.url=${{ secrets.SONAR_URL }} \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          IMAGE_NAME="secrets.DOCKER_USERNAME/github-actions-demo"
+          VERSION="${BUILD_NUMBER}"
+          docker build -t $IMAGE_NAME:$VERSION -f spring-boot-app/Dockerfile spring-boot-app
+          docker push $IMAGE_NAME:$VERSION
