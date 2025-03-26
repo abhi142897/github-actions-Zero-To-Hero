@@ -42,6 +42,7 @@ jobs:
         with:
           name: spring-boot-web
           path: spring-boot-app/target/spring-boot-web.jar
+          retention-days: 1
 #  sonar:
 #    needs: build
 #    runs-on: ubuntu-latest
