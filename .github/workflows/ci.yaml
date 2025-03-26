@@ -37,7 +37,7 @@ jobs:
       - name: Verify JAR File Exists
         run: ls -l spring-boot-app/target/
         
-      - name: Upload JAR as an Artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: spring-boot-web
@@ -72,7 +72,7 @@ jobs:
         run: cd spring-boot-app
       - name: Checkout Repository
         uses: actions/checkout@v4
-      - name: Download JAR Artifact
+      - name: Download artifact
         uses: actions/download-artifact@v3
         with:
           name: spring-boot-web
